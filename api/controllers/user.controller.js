@@ -1,6 +1,6 @@
 export const test=(req,res)=>{
     res.json({
-        message: 'Hellqo World!'
+        message: 'Hello World!'
     }       
     );
 }
