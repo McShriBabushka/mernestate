@@ -18,6 +18,7 @@ import {
 } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import UpdateListing from './UpdateListing';
 export default function Profile() {
   const fileRef = useRef(null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -259,7 +260,9 @@ export default function Profile() {
             </Link>
             <div className='flex flex-col gap-2'>
                <button onClick={()=>handleListingDelete(listing._id)}className='text-red-700 border p-1 rounded-lg uppercase'>Delete</button>
+               <Link to={`/update-listing/${listing._id}`}>
                <button className='text-green-600 border p-1 rounded-lg uppercase'>Edit</button>
+               </Link>
             </div>
           </div>
         )) }
