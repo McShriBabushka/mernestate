@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ListingItem from "../components/ListingItem";
 
 export default function Search() {
   const [sidebardata,setSidebardata]= useState({
@@ -44,7 +45,7 @@ export default function Search() {
         order: orderFromUrl || 'desc',
       });
     }
-
+    
     const fetchListings = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
@@ -163,7 +164,17 @@ const handleSubmit=(e)=>{
            uppercase hover:opacity-75 font-semibold">Search</button>
         </form>
       </div>
+      <div className="flex-1">
       <h1 className="text-3xl font-semibold text-slate-700 p-3 border-b mt-5">Listing Results:</h1>
+      <div className="p-7  flex flex-wrap gap-4">{!loading && listings.length===0 && (
+        <p className="text-xl text-slate-700">No listing found!</p>
+      )}
+      {loading&& (<p className="text-xl text-slate-200 text-center">Loading...</p>)}
+      {!loading && listings &&listings.map((listing)=>(
+        <ListingItem key={listing._id} listing={listing}></ListingItem>
+      ))} 
+      </div>
+      </div>
     </div>
   );
 }
